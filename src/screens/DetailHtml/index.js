@@ -1,8 +1,10 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, View } from 'react-native';
+import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
 import api from '../../services/api';
 import HTML from 'react-native-render-html';
 import { tagsStyles } from './tagHtmlStyles';
+import styles from './styles';
+import Spacer from '../../../styles';
 
 const DetailHtml = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -29,13 +31,21 @@ const DetailHtml = () => {
   }, []);
 
   return (
-    <View>
+    <View style={styles.container}>
       {isLoading ? (
         <ActivityIndicator />
       ) : (
-        <ScrollView horizontal={true}>
-          <HTML tagsStyles={tagsStyles} html={htmlContent} />
-        </ScrollView>
+        <View style={styles.container}>
+          <Text style={styles.title}>Relatório De Vendas</Text>
+          <Spacer height={32} />
+          <ScrollView
+            showsVerticalScrollIndicator={false}
+            contentContainerStyle={styles.containerScroll}>
+            <ScrollView contentContainerStyle={styles.containerScrollChild} horizontal={true}>
+              <HTML tagsStyles={tagsStyles} html={htmlContent} />
+            </ScrollView>
+          </ScrollView>
+        </View>
       )}
     </View>
   );
