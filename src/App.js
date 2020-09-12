@@ -3,6 +3,8 @@ import Home from './screens/Home';
 import Detail from './screens/Detail';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
+import './config/ReactotronConfig';
+
 const Stack = createStackNavigator();
 
 const App = () => {
