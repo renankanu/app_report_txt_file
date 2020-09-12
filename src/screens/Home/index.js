@@ -18,7 +18,11 @@ const Home = () => {
           style={styles.buttonCard}>
           <Text style={styles.labelButton}>1</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.buttonCard}>
+        <TouchableOpacity
+          onPress={() => {
+            navigation.navigate('DetalheHtml');
+          }}
+          style={styles.buttonCard}>
           <Text style={styles.labelButton}>2</Text>
         </TouchableOpacity>
         <TouchableOpacity style={styles.buttonCard}>

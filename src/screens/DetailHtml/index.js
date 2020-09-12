@@ -1,13 +1,21 @@
 import React, { useCallback, useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, Text, View } from 'react-native';
+import { ActivityIndicator, ScrollView, View } from 'react-native';
 import api from '../../services/api';
+import HTML from 'react-native-render-html';
+import { tagsStyles } from './tagHtmlStyles';
 
-const Detail = () => {
+const DetailHtml = () => {
   const [isLoading, setIsLoading] = useState(false);
+  const [htmlContent, setHtmlContent] = useState('');
   const [data, setData] = useState('');
+
   useEffect(() => {
     requestTxt();
   }, [requestTxt]);
+
+  useEffect(() => {
+    setHtmlContent(`<pre>${data}</pre>`);
+  }, [data]);
 
   const requestTxt = useCallback(async () => {
     setIsLoading(true);
@@ -26,11 +34,11 @@ const Detail = () => {
         <ActivityIndicator />
       ) : (
         <ScrollView horizontal={true}>
-          <Text style={{ letterSpacing: 1 }}>{data}</Text>
+          <HTML tagsStyles={tagsStyles} html={htmlContent} />
         </ScrollView>
       )}
     </View>
   );
 };
 
-export default Detail;
+export default DetailHtml;
